@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>PixelAir Audio Bridge</title>
+        <item>
+            <title>0.1.1</title>
+            <pubDate>Thu, 03 Sep 2026 15:26:11 -0700</pubDate>
+            <sparkle:version>9</sparkle:version>
+            <sparkle:shortVersionString>0.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/colorandlight/pixelair-macOS-audio-bridge-releases/releases/download/v0.1.1/PixelAir-Audio-Bridge-0.1.1.dmg" length="7593297" type="application/octet-stream" sparkle:edSignature="bBPUawCuxbo+++GmSglJ8m5Ppi70L6RNPVa+Lm/tBJiZTguGa6e7Nu4zKuvTJFPxaNDKGrUepaMPxy8ktPx+Dg=="/>
+        </item>
+    </channel>
+</rss>

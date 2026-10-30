@@ -39,11 +39,12 @@
     }
     .mark img { display: block; width: 100%; height: 100%; }
     h1 {
-      font-size: 42px;
+      font-size: clamp(32px, 8vw, 42px);
       font-weight: 600;
       letter-spacing: -0.03em;
       line-height: 1.05;
       margin: 0 0 12px;
+      text-wrap: balance;
     }
     p.lede {
       margin: 0 auto 28px;
@@ -67,6 +68,10 @@
       border-bottom: 1px solid var(--line);
       font-size: 15px;
       line-height: 1.45;
+    }
+    @media (max-width: 520px) {
+      body { align-items: flex-start; }
+      ol.points li { grid-template-columns: 1fr; gap: 2px; }
     }
     ol.points strong { font-weight: 600; }
     ol.points span { color: var(--muted); }
@@ -146,7 +151,7 @@
       <li>Route your Mac’s audio into BlackHole or Loopback.</li>
       <li>Choose that input, assign each plant <strong>Mix</strong>, <strong>Left</strong>, or <strong>Right</strong>, and turn <strong>Streaming</strong> on.</li>
     </ol>
-    <p class="meta">The app checks for updates in the background and asks before installing. Leave it running during a live stream.</p>
+    <p class="meta">The app checks for updates in the background and asks before it installs. Installing an update quits the app, so do that between streams.</p>
     <footer>
       <a href="https://fluoraplant.com">Fluora</a>
       ·

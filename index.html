@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PixelAir Audio Bridge — Fluora</title>
+  <link rel="icon" type="image/png" href="audio-bridge-icon.png">
+  <link rel="apple-touch-icon" href="audio-bridge-icon.png">
+  <meta name="description" content="PixelAir Audio Bridge sends the audio playing on your Mac to Fluora plants on your local network. Download the latest notarized build.">
+  <meta property="og:title" content="PixelAir Audio Bridge">
+  <meta property="og:description" content="Send the audio playing on your Mac to Fluora plants on your local network.">
+  <meta property="og:image" content="https://audio.fluoraplant.com/audio-bridge-icon.png">
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --text: #f4f6f8;
+      --muted: #9aa3ad;
+      --line: #23282e;
+      --accent: #3ad4ff;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 20px;
+    }
+    main { width: min(560px, 100%); text-align: center; }
+    .mark {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 28px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .mark img { display: block; width: 100%; height: 100%; }
+    h1 {
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 0 0 12px;
+    }
+    p.lede {
+      margin: 0 auto 28px;
+      max-width: 34em;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+    ol.points {
+      list-style: none;
+      margin: 0 0 32px;
+      padding: 0;
+      text-align: left;
+      border-top: 1px solid var(--line);
+    }
+    ol.points li {
+      display: grid;
+      grid-template-columns: 7.5em 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    ol.points strong { font-weight: 600; }
+    ol.points span { color: var(--muted); }
+    a.download {
+      display: inline-block;
+      background: var(--accent);
+      color: #061018;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 13px 22px;
+      border-radius: 10px;
+    }
+    a.download:hover { background: #6fe0ff; }
+    .meta {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h2 {
+      margin: 40px 0 12px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    ol.steps {
+      margin: 0 auto;
+      padding: 0 0 0 1.2em;
+      max-width: 34em;
+      text-align: left;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    ol.steps li { margin: 0 0 8px; }
+    ol.steps strong { color: var(--text); font-weight: 600; }
+    footer {
+      margin-top: 48px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark">
+      <img src="audio-bridge-icon.png" width="88" height="88" alt="PixelAir Audio Bridge">
+    </div>
+    <h1>PixelAir Audio Bridge</h1>
+    <p class="lede">Send the audio playing on your Mac to Fluora plants on your local network.</p>
+    <ol class="points">
+      <li>
+        <strong>Capture</strong>
+        <span>Listens to a virtual audio device such as BlackHole or Loopback.</span>
+      </li>
+      <li>
+        <strong>Analyze</strong>
+        <span>Splits the sound into 128 frequency bands on the Mac.</span>
+      </li>
+      <li>
+        <strong>Stream</strong>
+        <span>Each plant can follow the mix, the left channel, or the right channel.</span>
+      </li>
+    </ol>
+    <a class="download" id="download"
+       href="https://github.com/colorandlight/pixelair-macOS-audio-bridge-releases/releases/download/v0.1.1/PixelAir-Audio-Bridge-0.1.1.dmg">
+      Download PixelAir Audio Bridge 0.1.1
+    </a>
+    <p class="meta">macOS 14 or later · Developer ID signed and notarized</p>
+    <h2>Install</h2>
+    <ol class="steps">
+      <li>Open the disk image and drag <strong>PixelAir Audio Bridge</strong> into Applications.</li>
+      <li>Route your Mac’s audio into BlackHole or Loopback.</li>
+      <li>Choose that input, assign each plant <strong>Mix</strong>, <strong>Left</strong>, or <strong>Right</strong>, and turn <strong>Streaming</strong> on.</li>
+    </ol>
+    <p class="meta">The app checks for updates in the background and asks before installing. Leave it running during a live stream.</p>
+    <footer>
+      <a href="https://fluoraplant.com">Fluora</a>
+      ·
+      <a href="https://colorandlight.art">Color+Light</a>
+    </footer>
+  </main>
+  <script>
+    fetch("https://api.github.com/repos/colorandlight/pixelair-macOS-audio-bridge-releases/releases/latest")
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (rel) {
+        var dmg = (rel.assets || []).find(function (a) { return /\.dmg$/i.test(a.name); });
+        if (!dmg) return;
+        var version = String(rel.tag_name || "").replace(/^v/, "");
+        if (!/^\d+\.\d+/.test(version)) return;
+        document.getElementById("download").href = dmg.browser_download_url;
+        document.getElementById("download").textContent = "Download PixelAir Audio Bridge " + version;
+      })
+      .catch(function () {});
+  </script>
+</body>
+</html>

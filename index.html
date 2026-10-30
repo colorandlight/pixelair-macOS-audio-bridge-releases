@@ -103,6 +103,18 @@
     }
     .highlights li { margin: 0 0 10px; }
     .highlights li::marker { color: var(--accent); }
+    .note {
+      margin: 20px 0 0;
+      max-width: 40em;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    .note a, .feature a {
+      color: var(--text);
+      text-underline-offset: 3px;
+    }
+    .note a:hover, .feature a:hover { color: var(--accent); }
 
     .video {
       aspect-ratio: 16 / 9;
@@ -227,11 +239,12 @@
       <div class="wrap">
         <h2>Highlights</h2>
         <ul>
-          <li>Listens to a virtual audio device such as BlackHole or Loopback.</li>
+          <li>Listens through BlackHole or Loopback, so the plants hear the audio playing on your Mac.</li>
           <li>Turns the sound into 128 frequency bands on the Mac.</li>
           <li>Assigns each plant the mix, the left channel, or the right channel.</li>
           <li>Saves presets for the input, levels, bin maps, and plant assignments.</li>
         </ul>
+        <p class="note">The app takes an audio input. System playback stays on the speakers until you route it through a virtual device. Install <a href="https://existential.audio/blackhole/" target="_blank" rel="noopener">BlackHole</a> (free) or <a href="https://rogueamoeba.com/loopback/" target="_blank" rel="noopener">Loopback</a>, send your audio into that device, and select it in PixelAir Audio Bridge.</p>
       </div>
     </section>
 
@@ -250,7 +263,7 @@
         <article class="feature">
           <div class="copy">
             <h2>Choose the input</h2>
-            <p>Point the app at the loopback device that is receiving your system audio. PixelAir Audio Bridge does not appear inside Loopback as a monitor. You select that device here, then choose whether plants update at 50 or 100 times a second.</p>
+            <p>Select the <a href="https://existential.audio/blackhole/" target="_blank" rel="noopener">BlackHole</a> or <a href="https://rogueamoeba.com/loopback/" target="_blank" rel="noopener">Loopback</a> device that is receiving your system audio. In Loopback, add headphones or speakers as a monitor only if you also want to hear the audio. Then choose whether plants update at 50 or 100 times a second.</p>
           </div>
           <figure class="shot">
             <div class="frame">Photo</div>

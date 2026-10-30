@@ -13,68 +13,61 @@
   <style>
     :root {
       --bg: #0b0d10;
+      --card: #12151a;
       --text: #f4f6f8;
       --muted: #9aa3ad;
       --line: #23282e;
       --accent: #3ad4ff;
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; min-height: 100%; }
+    html, body { margin: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
+    }
+    a { color: inherit; }
+    .wrap { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
+
+    .hero {
+      min-height: 100svh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 48px 20px;
+      padding: 40px 0;
     }
-    main { width: min(560px, 100%); text-align: center; }
+    .card {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 64px 72px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: center;
+    }
     .mark {
-      width: 88px;
-      height: 88px;
-      margin: 0 auto 28px;
-      border-radius: 20px;
+      width: 112px;
+      height: 112px;
+      border-radius: 26px;
       overflow: hidden;
     }
     .mark img { display: block; width: 100%; height: 100%; }
     h1 {
-      font-size: clamp(32px, 8vw, 42px);
+      font-size: clamp(40px, 5vw, 64px);
       font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin: 0 0 12px;
+      letter-spacing: -0.035em;
+      line-height: 1.02;
+      margin: 0 0 14px;
       text-wrap: balance;
     }
-    p.lede {
-      margin: 0 auto 28px;
-      max-width: 34em;
+    .tagline {
+      margin: 0 0 28px;
+      max-width: 28em;
       color: var(--muted);
-      font-size: 17px;
-      line-height: 1.5;
-    }
-    ol.points {
-      list-style: none;
-      margin: 0 0 32px;
-      padding: 0;
-      text-align: left;
-      border-top: 1px solid var(--line);
-    }
-    ol.points li {
-      display: grid;
-      grid-template-columns: 7.5em 1fr;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 15px;
+      font-size: 20px;
       line-height: 1.45;
     }
-    @media (max-width: 520px) {
-      body { align-items: flex-start; }
-      ol.points li { grid-template-columns: 1fr; gap: 2px; }
-    }
-    ol.points strong { font-weight: 600; }
-    ol.points span { color: var(--muted); }
     a.download {
       display: inline-block;
       background: var(--accent);
@@ -82,82 +75,233 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 16px;
-      padding: 13px 22px;
-      border-radius: 10px;
+      padding: 14px 22px;
+      border-radius: 12px;
     }
     a.download:hover { background: #6fe0ff; }
     .meta {
       margin: 14px 0 0;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
+      line-height: 1.45;
     }
+
+    section { padding: 28px 0 72px; }
     h2 {
-      margin: 40px 0 12px;
-      font-size: 13px;
+      font-size: 28px;
       font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      margin: 0 0 18px;
+    }
+    .highlights ul {
+      margin: 0;
+      padding: 0 0 0 1.15em;
+      max-width: 40em;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+    .highlights li { margin: 0 0 10px; }
+    .highlights li::marker { color: var(--accent); }
+
+    .video {
+      aspect-ratio: 16 / 9;
+      border-radius: 20px;
+      border: 1px dashed #3a424c;
+      background:
+        radial-gradient(circle at center, rgba(58, 212, 255, 0.08), transparent 42%),
+        #101318;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
       color: var(--muted);
     }
-    ol.steps {
-      margin: 0 auto;
-      padding: 0 0 0 1.2em;
-      max-width: 34em;
-      text-align: left;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.5;
+    .play {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 1px solid #3a424c;
+      background: rgba(11, 13, 16, 0.7);
+      position: relative;
     }
-    ol.steps li { margin: 0 0 8px; }
-    ol.steps strong { color: var(--text); font-weight: 600; }
-    footer {
-      margin-top: 48px;
+    .play::before {
+      content: "";
+      position: absolute;
+      left: 28px;
+      top: 22px;
+      border-style: solid;
+      border-width: 12px 0 12px 18px;
+      border-color: transparent transparent transparent var(--text);
+    }
+    .video p { margin: 0; font-size: 15px; }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 56px;
+      align-items: center;
+      padding: 56px 0;
+      border-top: 1px solid var(--line);
+    }
+    .feature:nth-child(even) { grid-template-columns: 1.15fr 1fr; }
+    .feature:nth-child(even) .copy { order: 2; }
+    .feature h2 { font-size: 32px; margin-bottom: 12px; }
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+      max-width: 36em;
+    }
+    .shot { margin: 0; }
+    .frame {
+      aspect-ratio: 16 / 10;
+      border-radius: 16px;
+      border: 1px dashed #3a424c;
+      background: #101318;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    figcaption {
+      margin-top: 10px;
       color: var(--muted);
       font-size: 13px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
     }
     footer a { color: var(--muted); }
     footer a:hover { color: var(--text); }
+
+    @media (max-width: 800px) {
+      .wrap { width: min(1080px, calc(100% - 32px)); }
+      .card {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 22px;
+      }
+      .mark { width: 80px; height: 80px; border-radius: 18px; }
+      .tagline { font-size: 17px; }
+      .feature,
+      .feature:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 36px 0;
+      }
+      .feature:nth-child(even) .copy { order: 0; }
+      .feature h2 { font-size: 26px; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <div class="mark">
-      <img src="audio-bridge-icon.png" width="88" height="88" alt="PixelAir Audio Bridge">
+  <header class="hero">
+    <div class="wrap">
+      <div class="card">
+        <div class="mark">
+          <img src="audio-bridge-icon.png" width="112" height="112" alt="">
+        </div>
+        <div>
+          <h1>PixelAir Audio Bridge</h1>
+          <p class="tagline">Send the audio playing on your Mac to Fluora plants on your local network.</p>
+          <a class="download" id="download"
+             href="https://github.com/colorandlight/pixelair-macOS-audio-bridge-releases/releases/download/v0.1.1/PixelAir-Audio-Bridge-0.1.1.dmg">
+            Download PixelAir Audio Bridge 0.1.1
+          </a>
+          <p class="meta">macOS 14 or later · Developer ID signed and notarized<br>Open the disk image and drag the app into Applications.</p>
+        </div>
+      </div>
     </div>
-    <h1>PixelAir Audio Bridge</h1>
-    <p class="lede">Send the audio playing on your Mac to Fluora plants on your local network.</p>
-    <ol class="points">
-      <li>
-        <strong>Capture</strong>
-        <span>Listens to a virtual audio device such as BlackHole or Loopback.</span>
-      </li>
-      <li>
-        <strong>Analyze</strong>
-        <span>Splits the sound into 128 frequency bands on the Mac.</span>
-      </li>
-      <li>
-        <strong>Stream</strong>
-        <span>Each plant can follow the mix, the left channel, or the right channel.</span>
-      </li>
-    </ol>
-    <a class="download" id="download"
-       href="https://github.com/colorandlight/pixelair-macOS-audio-bridge-releases/releases/download/v0.1.1/PixelAir-Audio-Bridge-0.1.1.dmg">
-      Download PixelAir Audio Bridge 0.1.1
-    </a>
-    <p class="meta">macOS 14 or later · Developer ID signed and notarized</p>
-    <h2>Install</h2>
-    <ol class="steps">
-      <li>Open the disk image and drag <strong>PixelAir Audio Bridge</strong> into Applications.</li>
-      <li>Route your Mac’s audio into BlackHole or Loopback.</li>
-      <li>Choose that input, assign each plant <strong>Mix</strong>, <strong>Left</strong>, or <strong>Right</strong>, and turn <strong>Streaming</strong> on.</li>
-    </ol>
-    <p class="meta">The app checks for updates in the background and asks before it installs. Installing an update quits the app, so do that between streams.</p>
-    <footer>
+  </header>
+
+  <main>
+    <section class="highlights">
+      <div class="wrap">
+        <h2>Highlights</h2>
+        <ul>
+          <li>Listens to a virtual audio device such as BlackHole or Loopback.</li>
+          <li>Turns the sound into 128 frequency bands on the Mac.</li>
+          <li>Assigns each plant the mix, the left channel, or the right channel.</li>
+          <li>Saves presets for the input, levels, bin maps, and plant assignments.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Tutorial</h2>
+        <div class="video" role="img" aria-label="Tutorial video placeholder">
+          <span class="play" aria-hidden="true"></span>
+          <p>Tutorial video</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <article class="feature">
+          <div class="copy">
+            <h2>Choose the input</h2>
+            <p>Point the app at the loopback device that is receiving your system audio. PixelAir Audio Bridge does not appear inside Loopback as a monitor. You select that device here, then choose whether plants update at 50 or 100 times a second.</p>
+          </div>
+          <figure class="shot">
+            <div class="frame">Photo</div>
+            <figcaption>Audio input and stream rate</figcaption>
+          </figure>
+        </article>
+
+        <article class="feature">
+          <div class="copy">
+            <h2>Shape the level</h2>
+            <p>Gain, range, attack, release, and a low-to-high bias sit next to a live EQ visualizer. Switch the view between left, right, and mix, and preview a bin map before a plant uses it.</p>
+          </div>
+          <figure class="shot">
+            <div class="frame">Photo</div>
+            <figcaption>EQ visualizer and level controls</figcaption>
+          </figure>
+        </article>
+
+        <article class="feature">
+          <div class="copy">
+            <h2>Send each plant its own part</h2>
+            <p>Fluora plants on the local network show up in the device list. Set one to the full mix, or split a stereo pair so one plant follows the left channel and another follows the right. You can scan again or add a plant by IP.</p>
+          </div>
+          <figure class="shot">
+            <div class="frame">Photo</div>
+            <figcaption>Plant list with Mix, Left, and Right</figcaption>
+          </figure>
+        </article>
+
+        <article class="feature">
+          <div class="copy">
+            <h2>Zoom in on a frequency range</h2>
+            <p>A bin map takes a slice of the spectrum, such as a kick or a snare, and stretches it across all 128 bins. Name a few maps, save the whole setup as a preset, and switch between shows without rebuilding the routing.</p>
+          </div>
+          <figure class="shot">
+            <div class="frame">Photo</div>
+            <figcaption>Bin map and presets</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
       <a href="https://fluoraplant.com">Fluora</a>
       ·
       <a href="https://colorandlight.art">Color+Light</a>
-    </footer>
-  </main>
+    </div>
+  </footer>
+
   <script>
     fetch("https://api.github.com/repos/colorandlight/pixelair-macOS-audio-bridge-releases/releases/latest")
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
